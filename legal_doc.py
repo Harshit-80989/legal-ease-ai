@@ -15,12 +15,13 @@ if theme == "dark":
         <style>
         body, .stApp { background: #18191a !important; color: #f5f6fa !important; }
         .card { background: #242526 !important; color: #f5f6fa !important; border: 1px solid #333 !important; }
-        h1, h2, h3, h4, h5, h6, b, strong { color: #f5f6fa !important; }
+        h1, h2, h3, h4, h5, h6, b, strong, label, .stTextInput label, .stTextArea label, .stFileUploader label, .st-expanderHeader, .stButton>button, .stDownloadButton>button { color: #f5f6fa !important; }
         .stMarkdown table { color: #f5f6fa !important; }
         .stMarkdown a { color: #8ab4f8 !important; }
         .stMarkdown code { background: #333 !important; color: #fff !important; }
         .stAlert-success { background: #223322 !important; color: #b6fcb6 !important; }
         .stAlert-warning { background: #332a00 !important; color: #ffe066 !important; }
+        .stTextInput, .stTextArea, .stFileUploader, .stButton>button, .stDownloadButton>button { background: #222 !important; color: #f5f6fa !important; }
         </style>
         """,
         unsafe_allow_html=True
@@ -176,29 +177,35 @@ def parse_response(llm_response):
 st.markdown("#### 📄 Input Your Legal Document")
 col1, col2 = st.columns([2, 1])
 
+# Use session_state for doc_text so it persists and updates everywhere
+if "doc_text" not in st.session_state:
+    st.session_state["doc_text"] = ""
+    
 with col1:
-    doc_text = st.text_area(
+    st.session_state["doc_text"] = st.text_area(
         "Paste your legal document here:",
+        value=st.session_state["doc_text"],
         height=220,
         placeholder="Paste the full text of your legal contract, agreement, or policy here..."
     )
+
 with col2:
     uploaded_file = st.file_uploader("Or upload a .txt or .pdf file", type=["txt", "pdf"])
     if uploaded_file:
         if uploaded_file.type == "text/plain":
-            doc_text = uploaded_file.read().decode("utf-8")
+            st.session_state["doc_text"] = uploaded_file.read().decode("utf-8")
         elif uploaded_file.type == "application/pdf":
             try:
                 import PyPDF2
                 pdf_reader = PyPDF2.PdfReader(uploaded_file)
-                doc_text = "\n".join(page.extract_text() for page in pdf_reader.pages if page.extract_text())
+                st.session_state["doc_text"] = "\n".join(page.extract_text() for page in pdf_reader.pages if page.extract_text())
             except Exception:
                 st.warning("Could not read PDF. Please upload a valid text-based PDF.")
 
 # --- SAMPLE DOC ---
 with st.expander("🔎 Need a sample? Click to autofill a sample legal agreement."):
     if st.button("Use Sample Document"):
-        doc_text = """SERVICE AGREEMENT
+        st.session_state["doc_text"] = """SERVICE AGREEMENT
 
 This Service Agreement is made between Alpha Corp ("Provider") and Beta LLC ("Client").
 
@@ -211,7 +218,7 @@ This Service Agreement is made between Alpha Corp ("Provider") and Beta LLC ("Cl
 Signed,
 Alpha Corp & Beta LLC
 """
-
+doc_text = st.session_state["doc_text"]
 # --- ADVANCED SETTINGS ---
 with st.expander("⚙️ Advanced Settings", expanded=False):
     st.markdown(
