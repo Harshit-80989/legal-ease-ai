@@ -1,0 +1,4 @@
+streamlit
+cohere
+fpdf2
+PyPDF2
