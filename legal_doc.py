@@ -130,7 +130,7 @@ Please format your entire response exactly as follows, using '---' as a separato
     try:
         response = co.chat(
             message=prompt + "\n\n**DOCUMENT FOR ANALYSIS:**\n" + text,
-            model="command-r"
+            model="command-r-plus-08-2024"
         )
         return response.text.strip()
     except Exception as e:
