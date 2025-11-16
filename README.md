@@ -1,63 +1,59 @@
-LegalEase: AI-Powered Legal Document Analyzer
+# LegalEase: AI-Powered Legal Document Analyzer
 
-😶‍🌫️
-You can use the website at https://legal-ease-ai-v6belzhwbtmw9svn3ahcml.streamlit.app/
-😶‍🌫️
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-LegalEase is an intuitive, AI-powered web application designed to help you understand complex legal documents with ease.
+🔗 **Try it live:** [https://legal-ease-ai-v6belzhwbtmw9svn3ahcml.streamlit.app/](https://legal-ease-ai-v6belzhwbtmw9svn3ahcml.streamlit.app/)
 
-Simply paste your legal text or upload a document, and let our AI provide you with a simplified summary, extract key clauses, and decode confusing legal jargon.
+LegalEase is an intuitive, AI-driven web application that simplifies complex legal documents. Whether you're reviewing contracts, agreements, or policies, LegalEase helps you *summarize*, *extract key clauses*, and *decode difficult legal terminology* — all in one place.
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-🌟 Features
+---
 
-👉Document Analysis: Paste raw text or upload .txt, and .pdf files for analysis.
+## 🌟 Features
 
-👉AI-Powered Summarization: Get a quick and easy-to-understand summary of your lengthy legal documents.
+* **📄 Document Analysis** — Paste text or upload `.txt` or `.pdf` files.
+* **🧠 AI Summarization** — Get a clean, understandable summary of long legal documents.
+* **🔍 Key Clause Extraction** — Automatically highlights important clauses and sections.
+* **📘 Jargon Buster** — Explains complex legal terms in simple language.
+* **⚡ Advanced Search** — Quickly find clauses or keywords inside your document.
+* **🎨 Light & Dark Mode** — Clean and modern user interface that suits your preference.
 
-👉Key Clause Extraction: Automatically identify and extract the most important clauses and sections.
+---
 
-👉Jargon Buster: Understand complex legal terms with our built-in jargon decoder.
+## 🚀 Getting Started
 
-👉Advanced Search: Quickly find specific clauses or keywords within your document.
+Using LegalEase is quick and effortless. Just follow these steps:
 
-👉User-Friendly Interface: A clean and simple interface with both light and dark modes.
+### 1️⃣ Input Your Document
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-🚀 Getting Started
-Using LegalEase is simple. Follow these three easy steps:
+* Paste the entire text of your contract, agreement, or policy, **OR**
+* Upload a `.txt` or `.pdf` file.
 
-👉Input Your Document:
+### 2️⃣ Analyze
 
-Paste the full text of your legal contract, agreement, or policy into the text area.
+Click **Analyze Document** and let the AI process the content.
 
-OR, drag and drop or browse to upload a .txt or .pdf file.
+### 3️⃣ Review Results
 
-👉Analyze:
+* Read the **Summary** for a quick overview.
+* Explore **Key Clauses** to understand crucial sections.
+* Use **Jargon Buster** to decode complex terms.
+* Search for any clause or keyword using the **Advanced Search** bar.
 
-Click the "Analyze Document" button to let the AI process your document.
+---
 
-👉Review the Results:
+## 🛠️ Built With
 
-Explore the generated Summary, Key Clauses, and Jargon Buster sections.
+* **Frontend:** HTML, CSS, JavaScript (Future potential for React or Vue)
+* **Backend:** Python (Streamlit-driven UI, optional Flask/Django expansion)
+* **Deployment:** Streamlit Cloud for rapid deployment and easy access
 
-Use the search bar to look for any specific clause or keyword you are interested in.
+---
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## 📌 Future Enhancements
 
-🛠️ Built With
+* 📝 Support for `.docx` uploads
+* 🧾 Comparison between multiple legal documents
+* 🔐 Enhanced data privacy options
+* 🗂️ Exportable summaries and reports
 
-👉Frontend: HTML, CSS, JavaScript (Potentially a framework like React or Vue.js)
+---
 
-👉Backend: Python (Potentially a framework like Flask or Django)
-
-👉AI/ML: Natural Language Processing (NLP) models for text summarization and analysis.
-
-👉Deployment: Streamlit or a similar platform for rapid development and deployment.
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-🤝 Contributing
-Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
-
-📄 License
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+If you like this project, consider leaving a ⭐ on GitHub or contributing ideas to make LegalEase even better!
