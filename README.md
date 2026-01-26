@@ -13,7 +13,6 @@ LegalEase is an intuitive, AI-driven web application that simplifies complex leg
 * **🔍 Key Clause Extraction** — Automatically highlights important clauses and sections.
 * **📘 Jargon Buster** — Explains complex legal terms in simple language.
 * **⚡ Advanced Search** — Quickly find clauses or keywords inside your document.
-* **🎨 Light & Dark Mode** — Clean and modern user interface that suits your preference.
 
 ---
 
@@ -41,8 +40,8 @@ Click **Analyze Document** and let the AI process the content.
 
 ## 🛠️ Built With
 
-* **Frontend:** HTML, CSS, JavaScript (Future potential for React or Vue)
-* **Backend:** Python (Streamlit-driven UI, optional Flask/Django expansion)
+* **Frontend:** HTML, CSS, JavaScript 
+* **Backend:** Python (Streamlit-driven UI)
 * **Deployment:** Streamlit Cloud for rapid deployment and easy access
 
 ---
