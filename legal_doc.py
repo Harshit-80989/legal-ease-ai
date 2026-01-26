@@ -1,40 +1,5 @@
 import streamlit as st
-# --- THEME TOGGLE & CSS: ---
-import streamlit as st
 
-if "theme" not in st.session_state:
-    st.session_state["theme"] = "light"
-theme = st.session_state["theme"]
-toggle = st.toggle("🌗 Dark Mode", value=(theme == "dark"))
-st.session_state["theme"] = "dark" if toggle else "light"
-
-# Inject CSS immediately after theme is set
-if theme == "dark":
-    st.markdown(
-        """
-        <style>
-        body, .stApp { background: #18191a !important; color: #f5f6fa !important; }
-        .card { background: #242526 !important; color: #f5f6fa !important; border: 1px solid #333 !important; }
-        h1, h2, h3, h4, h5, h6, b, strong, label, .stTextInput label, .stTextArea label, .stFileUploader label, .st-expanderHeader, .stButton>button, .stDownloadButton>button { color: #f5f6fa !important; }
-        .stMarkdown table { color: #f5f6fa !important; }
-        .stMarkdown a { color: #8ab4f8 !important; }
-        .stMarkdown code { background: #333 !important; color: #fff !important; }
-        .stAlert-success { background: #223322 !important; color: #b6fcb6 !important; }
-        .stAlert-warning { background: #332a00 !important; color: #ffe066 !important; }
-        .stTextInput, .stTextArea, .stFileUploader, .stButton>button, .stDownloadButton>button { background: #222 !important; color: #f5f6fa !important; }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-else:
-    st.markdown(
-        """
-        <style>
-        .card { background: #f8f9fa !important; color: #222 !important; }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
 # --- IMPORTS ---
 
 import cohere
@@ -47,33 +12,58 @@ st.markdown(
     """
     <style>
     .big-title {font-size:2.6rem; font-weight:700; margin-bottom:0;}
-    .subtitle {font-size:1.2rem; color:#666; margin-top:0;}
+    .subtitle {font-size:1.2rem;color: #5c4500;  margin-top:0;}
     .step {background:#e3eafc; border-radius:8px; padding:0.7em 1em; margin-bottom:1em;}
     .footer {color:#888; font-size:0.9em; text-align:center; margin-top:2em;}
     .stTabs [data-baseweb="tab-list"] {justify-content: center;}
-    .card {border-radius: 12px; box-shadow: 0 2px 8px #0001; padding: 1.2em 1.5em; margin-bottom: 1.5em;}
+    .card {
+        color:#3b2f00;
+        background: #ffa500;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px #0001;
+        padding: 1.2em 1.5em;
+        margin-bottom: 1.5em;
+    }
     @media (max-width: 600px) {
         .big-title {font-size:1.5rem;}
         .subtitle {font-size:1rem;}
         .card {padding: 0.7em 0.5em;}
     }
     </style>
-    <div style='text-align:center'>
-        <span class='big-title'>🧑‍⚖️ LegalEase</span>
+
+    <div class="card" style="text-align:center">
+        <span class='big-title'> LegalEase AI</span>
         <div class='subtitle'>AI-Powered Legal Document Analyzer</div>
-        <div style='margin-top:0.5em; color:#444;'>Summarize, extract key clauses, search, and decode legal jargon in seconds.</div>
+        <div style='margin-top:0.5em; color:#444;'>
+            Summarize, extract key clauses, search, and decode legal jargon in seconds.
+        </div>
     </div>
     """,
     unsafe_allow_html=True
 )
 
+
 # --- PROGRESS STEPS ---
 st.markdown(
     """
+    <style>
+    .step {
+        background: #1e293b;   /* dark blue-gray */
+        color: #ffffff;        /* white text */
+        border-radius: 10px;
+        padding: 1em 1.2em;
+        margin-bottom: 1em;
+        line-height: 1.6;
+    }
+    </style>
+
     <div class='step'>
-        <b>Step 1:</b> <span style='color:#1a73e8'>Paste</span> or <span style='color:#1a73e8'>upload</span> your legal document.<br>
+        <b>Step 1:</b> <span style='color:#60a5fa'>Paste</span> or <span style='color:#60a5fa'>upload</span> your legal document.<br>
         <b>Step 2:</b> Click <b>Analyze Document</b>.<br>
-        <b>Step 3:</b> Review the <span style='color:#34a853'>Summary</span>, <span style='color:#fbbc05'>Key Clauses</span>, <span style='color:#ea4335'>Jargon Buster</span>, or <span style='color:#1a73e8'>search</span> for any clause.
+        <b>Step 3:</b> Review the <span style='color:#4ade80'>Summary</span>, 
+        <span style='color:#fde047'>Key Clauses</span>, 
+        <span style='color:#f87171'>Jargon Buster</span>, 
+        or <span style='color:#60a5fa'>search</span> for any clause.
     </div>
     """,
     unsafe_allow_html=True
@@ -83,7 +73,7 @@ st.markdown(
 try:
     COHERE_API_KEY = st.secrets["COHERE_API_KEY"]
 except Exception:
-    st.error("❌ Cohere API key not found. Please set it in Streamlit secrets as 'COHERE_API_KEY'.")
+    st.error(" Cohere API key not found. Please set it in Streamlit secrets as 'COHERE_API_KEY'.")
     st.info("For local development, create a .streamlit/secrets.toml file and add your key.")
     st.stop()
 
@@ -266,16 +256,16 @@ if 'summary' in st.session_state and 'key_clauses' in st.session_state and 'jarg
     jargon = st.session_state['jargon']
 
     tabs = st.tabs([
-        "✅ Summary",
-        "🔑 Key Clauses",
-        "💡 Jargon Buster"
+        " Summary",
+        " Key Clauses",
+        " Jargon Buster"
     ])
 
     with tabs[0]:
         st.markdown("<div class='card'><h3>📋 Document Summary</h3>" + summary + "</div>", unsafe_allow_html=True)
 
     with tabs[1]:
-        st.markdown("<div class='card'><h3>📑 Key Clauses</h3>", unsafe_allow_html=True)
+        st.markdown("<div class='card'><h3> Key Clauses</h3>", unsafe_allow_html=True)
         clause_order = ["Liability", "Termination", "Confidentiality", "Payment Terms", "Governing Law"]
         for clause_name in clause_order:
             text = key_clauses.get(clause_name, "_Not explicitly found in the document._")
@@ -283,7 +273,7 @@ if 'summary' in st.session_state and 'key_clauses' in st.session_state and 'jarg
         st.markdown("</div>", unsafe_allow_html=True)
 
     with tabs[2]:
-        st.markdown("<div class='card'><h3>📚 Jargon Buster</h3>", unsafe_allow_html=True)
+        st.markdown("<div class='card'><h3> Jargon Buster</h3>", unsafe_allow_html=True)
         if jargon:
             md_table = "| Term | Explanation |\n|---|---|\n"
             for term, expl in jargon:
@@ -346,8 +336,7 @@ else:
 st.markdown(
     """
     <div class='footer'>
-        Made with ❤️ using <a href='https://cohere.com/' target='_blank'>Cohere</a> & <a href='https://streamlit.io/' target='_blank'>Streamlit</a>.<br>
-        <a href='https://github.com/' target='_blank'>Need help?</a>
+        Made by Harshit using <a href='https://cohere.com/' target='_blank'>Cohere</a> & <a href='https://streamlit.io/' target='_blank'>Streamlit</a>.<br>
     </div>
     """,
     unsafe_allow_html=True
